@@ -8,7 +8,7 @@ def find_or_create_user
   puts "Please enter your full name"
   user_name = gets.chomp
   new_user = User.find_or_create_by(name: user_name)
-  binding.pry
+  #binding.pry
 end
 
 def list_options
@@ -23,8 +23,6 @@ def list_options
     puts Artist.all
   elsif input == 2
     puts Performance.all
-  elsif input == 3
-    puts Plan.
   end
 
 end

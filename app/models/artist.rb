@@ -3,9 +3,8 @@ class Artist < ActiveRecord::Base
   belongs_to :performance
 
   def get_performance
-    Performance.all.select do |performance|
-      performance.artist == self
-    end
+    p = Performance.all.select {|performance| performance.artist == self}
+    p[0]
   end
 
 

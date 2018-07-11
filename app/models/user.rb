@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :performances
 
-  def self.add_performance
-    
+  has_many :plans
+  has_many :performances, through: :plan
+  has_many :artists, through: :performances
+
+  def add_performance
+
   end
 
 end

@@ -27,7 +27,6 @@ Artist.create(name: "Justice")
 Artist.create(name: "Hardwell")
 
 
-
 Performance.create(time: "2018-08-15 [11:00:00]", stage: 1, artist_id: Artist.find_by(name: "Avicii").id)
 Performance.create(time: "2018-08-15 [11:30:00]", stage: 1, artist_id: Artist.find_by(name: "Steve Aoki").id)
 Performance.create(time: "2018-08-15 [12:00:00]", stage: 2, artist_id: Artist.find_by(name: "Tiesto").id)
@@ -37,3 +36,11 @@ Performance.create(time: "2018-08-16 [11:00:00]", stage: 1, artist_id: Artist.fi
 Performance.create(time: "2018-08-16 [11:30:00]", stage: 2, artist_id: Artist.find_by(name: "Hardwell").id)
 Performance.create(time: "2018-08-16 [11:30:00]", stage: 3, artist_id: Artist.find_by(name: "Carl Cox").id)
 Performance.create(time: "2018-08-16 [12:00:00]", stage: 3, artist_id: Artist.find_by(name: "Justice").id)
+
+
+Plan.create(user_id: User.find_by(name: "Ruby Weiner").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "Justice").id).id)
+Plan.create(user_id: User.find_by(name: "Ruby Weiner").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "Claptone").id).id)
+Plan.create(user_id: User.find_by(name: "Ruby Weiner").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "Avicii").id).id)
+Plan.create(user_id: User.find_by(name: "Andres Manco").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "Avicii").id).id)
+Plan.create(user_id: User.find_by(name: "Andres Manco").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "David Guetta").id).id)
+Plan.create(user_id: User.find_by(name: "Andres Manco").id, performance_id: Performance.find_by(artist_id: Artist.find_by(name: "Tiesto").id).id)

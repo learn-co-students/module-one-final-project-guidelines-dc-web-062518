@@ -1,7 +1,7 @@
 class Book < ActiveRecord::Base
 
-has_many :user_collections
-has_many :users, through: :user_collections
+has_many :user_book_choices
+has_many :users, through: :user_book_choices
 
 end
 

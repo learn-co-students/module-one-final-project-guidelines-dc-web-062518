@@ -12,5 +12,5 @@ Book.create(title: "The Second Sex", author: "Simone de Beauvoir")
 User.create(name: "Ayana")
 User.create(name: "Emily")
 
-UserCollection.create(book_id: 10, user_id: 1)
-UserCollection.create(book_id: 3, user_id: 2)
+UserBookChoice.create(book_id: 10, user_id: 1)
+UserBookChoice.create(book_id: 3, user_id: 2)

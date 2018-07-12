@@ -134,7 +134,18 @@ class CLI
   end
 
   def self.delete_plan
-    puts "deleted"
+    puts ""
+    view_plan
+    puts ""
+    puts "Enter the name of the artist you want to delete:"
+    answer = gets.chomp
+    plan = @user.plans.select {|plan| plan.performance.artist.name == answer}
+# binding.pry
+    #Plan.find(plan[0].id).destroy
+    @user.plans.destroy(plan[0].id)
+
+
+    view_plan
   end
 
   def self.quit

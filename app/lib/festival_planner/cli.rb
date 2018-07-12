@@ -8,14 +8,7 @@ class CLI
     # binding.pry
     welcome
     find_or_create_user
-    return_selection
-    #view_performances
-    # view_artists
-
-    #self.find_or_create_user
-  #  self.return_selection
-
-    # find_or_create_user
+    select_option
 
   end
 
@@ -30,11 +23,8 @@ class CLI
     #binding.pry
   end
 
-  def self.return_selection
+  def self.select_option
     input = nil
-
-
-
     until input == 4 do
       puts " "
       list_options
@@ -48,14 +38,11 @@ class CLI
       when 3
         view_plan
         update_plan
-      # when 4
-      #   CLI.quit
       end
     end
   end
 
   def self.view_artists
-    # binding.pry
     puts " "
     puts "Artists"
     puts "-------------------"
@@ -83,12 +70,10 @@ class CLI
     puts " "
     puts "My Plan:"
     counter = 1
-    #plans = @new_user.plans.order(:performance)
     @user.plans.each do |plan|
       puts "#{counter}. #{plan.performance.artist.name} - Stage: #{plan.performance.stage} - #{plan.performance.time} "
       counter+= 1
     end
-
     nil
   end
 
@@ -99,21 +84,21 @@ class CLI
     puts "Enter 'yes' to edit your plan"
     puts "Enter 'no' to return to options"
     answer1 = gets.chomp
-    if answer1 == "yes"
+    if answer1.downcase == "yes"
       puts ""
       puts "To add a plan enter 'add'"
       puts "To delete a plan enter 'delete'"
       answer2 = gets.chomp
-      if answer2 == "add"
+      if answer2.downcase == "add"
         add_plan
-      elsif answer2 == "delete"
+      elsif answer2.downcase == "delete"
         delete_plan
       else
         puts ""
         puts "invalid input"
         update_plan
       end
-    elsif answer1 == "no"
+    elsif answer1.downcase == "no"
       list_options
     else
       puts ""
@@ -128,8 +113,19 @@ class CLI
     puts ""
     puts "Enter the name of the artist you want to see: "
     answer = gets.chomp
-    performance = Performance.all.select {|performance| performance.artist.name == answer}
-    Plan.create(user_id: @user.id, performance_id: performance[0].id)
+    performance = Performance.all.select {|performance| performance.artist.name.downcase == answer.downcase}
+    if performance == []
+      puts ""
+      puts "invalid input"
+      add_plan
+    else
+      new_plan = Plan.create(user_id: @user.id, performance_id: performance[0].id)
+      @user.plans << new_plan
+      puts ""
+      puts "Your plan to see #{answer} has been added"
+    end
+
+    view_plan
 
   end
 
@@ -139,11 +135,15 @@ class CLI
     puts ""
     puts "Enter the name of the artist you want to delete:"
     answer = gets.chomp
-    plan = @user.plans.select {|plan| plan.performance.artist.name == answer}
-# binding.pry
-    #Plan.find(plan[0].id).destroy
-    @user.plans.destroy(plan[0].id)
-
+    plan = @user.plans.select {|plan| plan.performance.artist.name.downcase == answer.downcase}
+    if plan == []
+      puts ""
+      puts "invalid input"
+    else
+      @user.plans.destroy(plan[0].id)
+      puts ""
+      puts "Your plan to see #{answer} has been deleted"
+    end
 
     view_plan
   end

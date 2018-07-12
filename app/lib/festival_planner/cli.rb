@@ -5,7 +5,6 @@ class CLI
   attr_accessor :user, :input
 
   def self.call
-    # binding.pry
     welcome
     find_or_create_user
     select_option
@@ -20,7 +19,6 @@ class CLI
     puts "Please enter your full name"
     user_name = gets.chomp
     @user = User.find_or_create_by(name: user_name)
-    #binding.pry
   end
 
   def self.select_option
@@ -74,10 +72,11 @@ class CLI
       puts ""
       puts "You have no saved plans"
     else
-      @user.plans.each do |plan|
-      puts "#{counter}. #{plan.performance.artist.name} - Stage: #{plan.performance.stage} - #{plan.performance.time} "
-      counter+= 1
-      end
+      x = @user.plans.sort_by { |plan| plan.performance.time }
+        x.each do |plan|
+          puts "#{counter}. #{plan.performance.artist.name} - Stage: #{plan.performance.stage} - #{plan.performance.time} "
+          counter+= 1
+        end
     end
     nil
   end
@@ -104,7 +103,7 @@ class CLI
         update_plan
       end
     elsif answer1.downcase == "no"
-      list_options
+
     else
       puts ""
       puts "invalid input"

@@ -1,0 +1,16 @@
+Book.create(title: "Beyond Good And Evil", author: "Friedrich Nietzsche")
+Book.create(title: "The Republic", author: "Plato")
+Book.create(title: "Being and Nothingness", author: "Jean-Paul Sartre")
+Book.create(title: "The Stranger", author: "Albert Camus")
+Book.create(title: "Politics", author: "Aristotle")
+Book.create(title: "Nicomachean Ethics", author: "Aristotle")
+Book.create(title: "Material Beings", author: "Peter van Inwagen")
+Book.create(title: "Atlas Shrugged", author: "Ayn Rand")
+Book.create(title: "Women, Race, and Class", author: "Angela Davis")
+Book.create(title: "The Second Sex", author: "Simone de Beauvoir")
+
+User.create(name: "Ayana")
+User.create(name: "Emily")
+
+UserBookChoice.create(book_id: 10, user_id: 1)
+UserBookChoice.create(book_id: 3, user_id: 2)

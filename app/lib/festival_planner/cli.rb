@@ -119,14 +119,17 @@ class CLI
       puts "invalid input"
       add_plan
     else
-      new_plan = Plan.create(user_id: @user.id, performance_id: performance[0].id)
-      @user.plans << new_plan
-      puts ""
-      puts "Your plan to see #{answer} has been added"
+      if Plan.find_by(user_id: @user.id, performance_id: performance[0].id).persisted?
+          puts ""
+          puts "You already have this plan"
+      else
+        plan = Plan.create(user_id: @user.id, performance_id: performance[0].id)
+        @user.plans << plan
+        puts ""
+        puts "Your plan to see #{answer} has been added"
+      end
     end
-
     view_plan
-
   end
 
   def self.delete_plan

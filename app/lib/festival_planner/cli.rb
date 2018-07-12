@@ -124,7 +124,7 @@ class CLI
       puts "invalid input"
       add_plan
     else
-      if Plan.find_by(user_id: @user.id, performance_id: performance[0].id).persisted?
+      if Plan.find_by(user_id: @user.id, performance_id: performance[0].id) != nil
           puts ""
           puts "You already have this plan"
       else
@@ -133,6 +133,7 @@ class CLI
         puts ""
         puts "Your plan to see #{answer} has been added"
       end
+
     end
     view_plan
   end

@@ -70,12 +70,14 @@ class CLI
     puts " "
     puts "My Plan:"
     counter = 1
-    #plans = @user.plans.each do |plan|
-    #  plan.order(time: :asc)
-    #end
-    @user.plans.each do |plan|
+    if @user.plans == []
+      puts ""
+      puts "You have no saved plans"
+    else
+      @user.plans.each do |plan|
       puts "#{counter}. #{plan.performance.artist.name} - Stage: #{plan.performance.stage} - #{plan.performance.time} "
       counter+= 1
+      end
     end
     nil
   end

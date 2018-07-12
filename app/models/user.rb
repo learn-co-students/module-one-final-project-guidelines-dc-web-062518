@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
 
   def see_book_choices
     # returns all items in user choice database
-    UserBookChoice.self.all
+    self.books.each do |book|
+      puts "Book Id: #{book.id} — #{book.title} by #{book.author}"
+    end
   end
 
   # def update_book_choices
@@ -20,7 +22,7 @@ class User < ActiveRecord::Base
 
   def delete_book_choice(book_id)
     #destroy book object based on book_id given from user
-    UserBookChoice.destroy(book_id: )
+    UserBookChoice.where(book_id: book_id, user_id: self.id).destroy_all
   end
 
 end

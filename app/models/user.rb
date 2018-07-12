@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def delete_book_choice(book_id)
     #destroy book object based on book_id given from user
-    UserBookChoice.destroy(book_id: )
+    UserBookChoice.destroy(book_id: book_id)
   end
 
 end
